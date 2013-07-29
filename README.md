@@ -19,3 +19,9 @@ http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-patho
 4. If plugins are not managed by bundles should be installed as submodule if is manged by git
 
 	git submodule add [git path] [local path]
+
+5. Colorscheme "Solarized" is managed by Vundle and the file "solarized" is actually a symbolic link to the file in the Vundle bundle directory ~/.vim/bundle/vim-colors-solarized/colors/solarized
+
+    ln -s ~/.vim/bundle/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/solarized.vim 
+
+6. Snippets are done by combination of omnicomplcache + Omnisnippets + Ultisnippets. The snippets folder ~/.vim/snippets is symlink to ~/.vim/bundle/vim-snippets/snippets so you can view what the snippets are. Vundle is managing this. Omnisnippets is already pointed to this same folder. 

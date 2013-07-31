@@ -30,7 +30,7 @@ setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
 setlocal comments=:#
-setlocal commentstring=<%#%s%>
+setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -40,14 +40,14 @@ setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
 setlocal nocursorline
-setlocal define=
+setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=
 setlocal dictionary=
 setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'eruby'
-setlocal filetype=eruby
+if &filetype != 'ruby'
+setlocal filetype=ruby
 endif
 setlocal foldcolumn=0
 setlocal foldenable
@@ -63,12 +63,12 @@ setlocal formatexpr=
 setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
-setlocal iminsert=2
-setlocal imsearch=2
+setlocal iminsert=0
+setlocal imsearch=0
 setlocal include=^\\s*\\<\\(load\\>\\|require\\>\\|autoload\\s*:\\=[\"']\\=\\h\\w*[\"']\\=,\\)
 setlocal includeexpr=RailsIncludeexpr()
-setlocal indentexpr=GetErubyIndent()
-setlocal indentkeys=o,O,*<Return>,<>>,{,},0),0],o,O,!^F,=end,=else,=elsif,=rescue,=ensure,=when
+setlocal indentexpr=GetRubyIndent(v:lnum)
+setlocal indentkeys=0{,0},0),0],!^F,o,O,e,=end,=else,=elsif,=when,=ensure,=rescue,==begin,==end
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255,$
 setlocal keywordprg=ri\ -T\ -f\ bs
@@ -77,14 +77,14 @@ setlocal nolisp
 setlocal nolist
 setlocal nomacmeta
 setlocal makeprg=
-setlocal matchpairs=(:),{:},[:],<:>
+setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=octal,hex
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=rubycomplete#Complete
-setlocal path=lib,vendor,app/models/concerns,app/controllers/concerns,app/controllers,app/helpers,app/mailers,app/models,app/*,app/views,app/views/static_pages,public,spec,spec/controllers,spec/helpers,spec/mailers,spec/models,spec/views,spec/lib,spec/features,spec/requests,spec/integration,vendor/plugins/*/lib,vendor/plugins/*/test,vendor/rails/*/lib,vendor/rails/*/test,~/Dropbox/Projects/Ruby/Rails/sample_app,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0/x86_64-darwin10.8.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby/2.0.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby/2.0.0/x86_64-darwin10.8.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/x86_64-darwin10.8.0
+setlocal path=lib,vendor,app/models/concerns,app/controllers/concerns,app/controllers,app/helpers,app/mailers,app/models,app/*,app/views,spec,spec/controllers,spec/helpers,spec/mailers,spec/models,spec/views,spec/lib,spec/features,spec/requests,spec/integration,vendor/plugins/*/lib,vendor/plugins/*/test,vendor/rails/*/lib,vendor/rails/*/test,~/Dropbox/Projects/Ruby/Rails/sample_app,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0/x86_64-darwin10.8.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby/2.0.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby/2.0.0/x86_64-darwin10.8.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/x86_64-darwin10.8.0
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
@@ -105,8 +105,8 @@ setlocal statusline=%!Pl#Statusline(0,0)
 setlocal suffixesadd=.rb
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'eruby'
-setlocal syntax=eruby
+if &syntax != 'ruby'
+setlocal syntax=ruby
 endif
 setlocal tabstop=4
 setlocal tags=~/Dropbox/Projects/Ruby/Rails/sample_app/tags,~/Dropbox/Projects/Ruby/Rails/sample_app/tmp/tags,./tags,tags,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0/tags,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/2.0.0/x86_64-darwin10.8.0/tags,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/site_ruby/tags,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby/2.0.0/tags,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby/2.0.0/x86_64-darwin10.8.0/tags,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/vendor_ruby/tags,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/tags,~/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/x86_64-darwin10.8.0/tags
@@ -118,12 +118,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 10 - ((9 * winheight(0) + 13) / 27)
+let s:l = 21 - ((20 * winheight(0) + 13) / 27)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-10
-normal! 027|
+21
+normal! 014|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

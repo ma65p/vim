@@ -91,6 +91,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
+Bundle 'scrooloose/nerdcommenter'
 Bundle 'honza/vim-snippets'
 Bundle 'Lokaltog/vim-easymotion'
 

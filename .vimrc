@@ -17,6 +17,8 @@ set foldlevel=4 		" High fold level so zc will close lower lvl 1st
 set number			" Print the number of each line
 set guifont=Monaco:h12  	" Use Monaco 12
 " Miscs
+    "http://stackoverflow.com/questions/8413781/automatically-set-multiple-file-types-in-filetype-if-a-file-has-multiple-exten
+    autocmd BufRead,BufNewFile *.html.erb setlocal filetype=html.eruby
 	"Saving Fold Automatically
 	"http://stackoverflow.com/questions/2142402/code-folding-is-not-saved-in-my-vimrc
 	"Note that folder ~/.vim/view is created to manage saved folds
@@ -44,12 +46,16 @@ set guifont=Monaco:h12  	" Use Monaco 12
 	" <CR>: close popup and save indent.
 	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 	function! s:my_cr_function()
-	  " For no inserting <CR> key.
-	  return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+	  " Insert first candidates with CR
+	  return pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
 	endfunction
 " NeoSnippets
+    " Enable snipMate compatibility feature.
+    let g:neosnippet#enable_snipmate_compatibility = 1
 	" " Tell Neosnippet about the other snippets
-	let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippet'
+	let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+    " disable built-in snippets
+    let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 	" Plugin key-mappings.
 	imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 	smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -58,12 +64,12 @@ set guifont=Monaco:h12  	" Use Monaco 12
 	" Tab will expand the selected option. Better to just type out the
 	" snippets.
 	" SuperTab like snippets behavior.
-	imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-	\ "\<Plug>(neosnippet_expand_or_jump)"
-	\: pumvisible() ? "\<C-n>" : "\<TAB>"
-	smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-	\ "\<Plug>(neosnippet_expand_or_jump)"
-	\: "\<TAB>"
+	"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+	"\ "\<Plug>(neosnippet_expand_or_jump)"
+	"\: pumvisible() ? "\<C-n>" : "\<TAB>"
+	"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+	"\ "\<Plug>(neosnippet_expand_or_jump)"
+	"\: "\<TAB>"
 
 " CtrlP
 	"Remap CtrlP plugin

@@ -44,14 +44,14 @@ set guifont=Monaco:h12  	" Use Monaco 12
     let g:neocomplcache_enable_auto_select = 1
 	" Recommended key-mappings.
 	" <CR>: close popup and save indent.
-	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-	function! s:my_cr_function()
-	  " Insert first candidates with CR
-	  return pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
-	endfunction
+	"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+	"function! s:my_cr_function()
+	  "" Insert first candidates with CR
+	  "return pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
+	"endfunction
 " NeoSnippets
     " Enable snipMate compatibility feature.
-    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#enable_snipmate_compatibility = 0
 	" " Tell Neosnippet about the other snippets
 	let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
     " disable built-in snippets
@@ -61,15 +61,21 @@ set guifont=Monaco:h12  	" Use Monaco 12
 	smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 	xmap <C-k>     <Plug>(neosnippet_expand_target)
 	" Selecting options still use <C-n> and <C-p>
-	" Tab will expand the selected option. Better to just type out the
-	" snippets.
-	" SuperTab like snippets behavior.
-	"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-	"\ "\<Plug>(neosnippet_expand_or_jump)"
-	"\: pumvisible() ? "\<C-n>" : "\<TAB>"
-	"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-	"\ "\<Plug>(neosnippet_expand_or_jump)"
-	"\: "\<TAB>"
+    " Shift Tab will tranverse your popup list.
+    inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+    " Tab do two things:
+    " if cusor is at a jumpable snippets then just jump. 
+    " otherwise, if is part of a popup then move to next item
+    " otherwise, simply tab
+    imap <expr> <TAB> pumvisible() ? "\<C-n>" : neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)" : "\<TAB>"
+    " if cusor is at an expandable snippet, then expand,
+    " otherwise, just act as regular enter
+    imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" :  pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
+    "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+	"function! s:my_cr_function()
+	  "" Insert first candidates with CR
+	  "return pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
+	"endfunction
 
 " CtrlP
 	"Remap CtrlP plugin

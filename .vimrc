@@ -15,6 +15,7 @@ colorscheme solarized		" Use Solarized
 set background=dark     	" Use dark bg for Solarized
 set foldlevel=4 		" High fold level so zc will close lower lvl 1st
 set number			" Print the number of each line
+set wildmenu			" Commandline completion is enhance mode
 set guifont=Monaco:h12  	" Use Monaco 12
 " Miscs
     "http://stackoverflow.com/questions/8413781/automatically-set-multiple-file-types-in-filetype-if-a-file-has-multiple-exten

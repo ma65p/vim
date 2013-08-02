@@ -1,3 +1,5 @@
 *.swp
 ~/.vim/view/*
-view/
+view/*
+~/.vim/bundle/*
+bundle/*

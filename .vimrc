@@ -71,11 +71,6 @@ set guifont=Monaco:h12  	" Use Monaco 12
     " if cusor is at an expandable snippet, then expand,
     " otherwise, just act as regular enter
     imap <expr><CR> neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" :  pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
-    "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-	"function! s:my_cr_function()
-	  "" Insert first candidates with CR
-	  "return pumvisible() ? neocomplcache#smart_close_popup() : "\<CR>"
-	"endfunction
 
 " CtrlP
 	"Remap CtrlP plugin

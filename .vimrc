@@ -18,6 +18,9 @@ set number			" Print the number of each line
 set wildmenu			" Commandline completion is enhance mode
 set guifont=Monaco:h12  	" Use Monaco 12
 " Miscs
+    "Md is Markdown and Markdown shouldn't need neocomplcache
+    autocmd FileType md :NeoComplCacheLock
+    au BufRead,BufNewFile *.md set filetype=markdown
     "http://stackoverflow.com/questions/8413781/automatically-set-multiple-file-types-in-filetype-if-a-file-has-multiple-exten
     autocmd BufRead,BufNewFile *.html.erb setlocal filetype=html.eruby
 	"Saving Fold Automatically
@@ -42,7 +45,7 @@ set guifont=Monaco:h12  	" Use Monaco 12
 	" Use smartcase.
 	let g:neocomplcache_enable_smart_case = 1
     " Highlighting first candidates
-    let g:neocomplcache_enable_auto_select = 1
+    let g:neocomplcache_enable_auto_select = 0
 	" Recommended key-mappings.
 	" <CR>: close popup and save indent.
 	"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
